@@ -2,220 +2,43 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>متجر Urban DZ | جميع المنتجات</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>متجر Urban DZ | المنتجات</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%); 
-            color: white; 
-            font-family: 'Cairo', sans-serif; 
-        }
-
-        /* Header */
-        .header { 
-            position: fixed; 
-            top: 0; 
-            width: 100%; 
-            background: rgba(10,10,10,0.95); 
-            backdrop-filter: blur(10px); 
-            z-index: 1000; 
-            padding: 1rem 0;
-        }
-        .nav { 
-            max-width: 1200px; 
-            margin: 0 auto; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            padding: 0 2rem;
-        }
-        .logo { 
-            font-size: 1.8rem; 
-            font-weight: 700; 
-            background: linear-gradient(45deg, #00ff9d, #00d4ff); 
-            -webkit-background-clip: text; 
-            -webkit-text-fill-color: transparent; 
-        }
-        .nav-links { display: flex; list-style: none; gap: 2rem; }
-        .nav-links a { 
-            color: white; 
-            text-decoration: none; 
-            font-weight: 500; 
-            transition: all 0.3s ease; 
-        }
-        .nav-links a:hover { color: #00ff9d; }
-
-        /* Main Content */
-        .container { 
-            max-width: 1400px; 
-            margin: 0 auto; 
-            padding: 140px 2rem 2rem;
-        }
-        .page-title { 
-            text-align: center; 
-            font-size: 3rem; 
-            margin-bottom: 3rem; 
-            background: linear-gradient(45deg, #00ff9d, #00d4ff); 
-            -webkit-background-clip: text; 
-            -webkit-text-fill-color: transparent;
-        }
-
-        /* Products Grid */
-        .products-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); 
-            gap: 2rem; 
-            margin-top: 2rem;
-        }
-        .product-card { 
-            background: rgba(22,22,22,0.9); 
-            border-radius: 20px; 
-            overflow: hidden; 
-            transition: all 0.4s ease; 
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(0,255,157,0.3);
-            position: relative;
-        }
-        .product-card:hover { 
-            transform: translateY(-10px) scale(1.02); 
-            box-shadow: 0 25px 50px rgba(0,255,157,0.4);
-        }
-        .product-img { 
-            width: 100%; 
-            height: 280px; 
-            object-fit: cover; 
-            transition: transform 0.4s ease;
-        }
-        .product-card:hover .product-img { transform: scale(1.08); }
-        .product-body { padding: 1.5rem; }
-        .product-title { 
-            font-size: 1.3rem; 
-            font-weight: 600; 
-            margin-bottom: 1rem; 
-            color: #fff;
-        }
-        .product-price { 
-            color: #00ff9d; 
-            font-size: 1.5rem; 
-            font-weight: 700; 
-            margin-bottom: 1.5rem;
-        }
-        .buy-btn { 
-            background: linear-gradient(45deg, #00ff9d, #00d4ff); 
-            color: #000; 
-            border: none; 
-            padding: 15px 30px; 
-            width: 100%; 
-            border-radius: 12px; 
-            font-weight: 700; 
-            font-size: 1.1rem; 
-            cursor: pointer; 
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-        .buy-btn:hover { 
-            transform: scale(1.05); 
-            box-shadow: 0 10px 25px rgba(0,255,157,0.5);
-        }
-
-        /* Order Form */
-        .order-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.9);
-            z-index: 2000;
-            backdrop-filter: blur(10px);
-        }
-        .modal-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: linear-gradient(135deg, #1a1a2e, #16213e);
-            padding: 2rem;
-            border-radius: 20px;
-            max-width: 500px;
-            width: 90%;
-            border: 1px solid rgba(0,255,157,0.3);
-        }
-        .close { 
-            color: #00ff9d; 
-            float: left; 
-            font-size: 2rem; 
-            font-weight: bold; 
-            cursor: pointer; 
-        }
-        .form-group { 
-            margin-bottom: 1.5rem; 
-            text-align: right;
-        }
-        .form-group label { 
-            display: block; 
-            margin-bottom: 0.5rem; 
-            font-weight: 600;
-        }
-        .form-group input { 
-            width: 100%; 
-            padding: 12px; 
-            border: 1px solid rgba(0,255,157,0.3); 
-            border-radius: 10px; 
-            background: rgba(255,255,255,0.1); 
-            color: white; 
-            font-family: inherit;
-        }
-        .submit-order { 
-            background: linear-gradient(45deg, #00ff9d, #00d4ff); 
-            color: #000; 
-            border: none; 
-            padding: 15px; 
-            width: 100%; 
-            border-radius: 12px; 
-            font-weight: 700; 
-            font-size: 1.2rem; 
-            cursor: pointer;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .products-grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; }
-            .container { padding: 120px 1rem 1rem; }
-        }
+        body { background: #0a0a0a; color: white; font-family: sans-serif; padding: 20px; }
+        h1 { text-align: center; color: #00ff9d; margin-bottom: 30px; }
+        .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; max-width: 800px; margin: auto; }
+        .card { background: #161616; padding: 15px; border-radius: 15px; border: 1px solid #333; transition: 0.3s; }
+        .card:hover { border-color: #00ff9d; }
+        img { width: 100%; height: 220px; object-fit: cover; border-radius: 10px; margin-bottom: 10px; }
+        .p-name { font-weight: bold; margin: 5px 0; }
+        .price { color: #00ff9d; font-size: 1.1rem; margin-bottom: 10px; }
+        .buy-btn { background: #00ff9d; color: black; border: none; padding: 12px; width: 100%; border-radius: 8px; font-weight: bold; cursor: pointer; }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <nav class="nav">
-            <div class="logo">Urban DZ</div>
-            <ul class="nav-links">
-                <li><a href="index.html">الرئيسية</a></li>
-                <li><a href="#shop">المتجر</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <!-- Main Content -->
-    <div class="container">
-        <h1 class="page-title">جميع المنتجات</h1>
-        <div class="products-grid" id="productsGrid">
-            <!-- Products will be loaded here -->
+    <h1>مجموعتنا الجديدة</h1>
+    <div class="grid">
+        <div class="card">
+            <img src="images/12f09fb0d69cc48b1524f6d3bf8caab2.jpg" alt="منتج">
+            <p class="p-name">Urban Hoodie V1</p>
+            <p class="price">4500 دج</p>
+            <button class="buy-btn" onclick="openOrderForm('Urban Hoodie V1', 4500)">طلب الآن</button>
         </div>
-    </div>
+        </div>
 
-    <!-- Order Modal -->
-    <div id="orderModal" class="order-modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeOrderForm()">&times;</span>
-            <h2>تفاصيل الطلب</h2>
-            <div id
+    <script>
+        function openOrderForm(productName, price) {
+            let name = prompt("الاسم واللقب:");
+            if (!name) return;
+            let phone = prompt("رقم الهاتف:");
+            let state = prompt("الولاية:");
+            let quantity = prompt("عدد القطع:");
+
+            if (name && phone && state && quantity) {
+                let message = `🛒 طلب جديد من Urban DZ%0A%0Aالمنتج: ${productName}%0Aالسعر: ${price} دج%0Aالزبون: ${name}%0Aالهاتف: ${phone}%0Aالولاية: ${state}%0Aالكمية: ${quantity}`;
+                window.open(`https://wa.me/213559049058?text=${message}`, '_blank');
+            }
+        }
+    </script>
+</body>
+</html>
