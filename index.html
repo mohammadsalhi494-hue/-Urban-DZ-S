@@ -3,39 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Urban DZ | الصفحة الرئيسية</title>
+    <title>Urban DZ | المتجر الرئيسي</title>
     <style>
-        body { 
-            background: #0a0a0a; 
-            color: white; 
-            font-family: 'Tajawal', sans-serif; 
-            text-align: center; 
-            margin: 0; 
-            padding: 20px; 
-        }
+        body { background: #0a0a0a; color: white; font-family: sans-serif; text-align: center; margin: 0; padding: 20px; }
         .hero { margin: 40px 0; }
-        .logo { max-width: 300px; border-radius: 20px; margin-bottom: 20px; border: 2px solid #00ff9d; }
-        h1 { font-size: 2rem; margin-bottom: 10px; }
-        p { color: #ccc; margin-bottom: 30px; }
-        .button { 
-            background: #00ff9d; 
-            color: black; 
-            padding: 15px 40px; 
-            text-decoration: none; 
-            border-radius: 50px; 
-            font-weight: bold; 
-            font-size: 1.2rem;
-            transition: 0.3s;
-        }
-        .button:hover { background: #fff; }
+        .logo { max-width: 250px; border-radius: 20px; border: 2px solid #00ff9d; margin-bottom: 20px; }
+        h1 { font-size: 2rem; }
+        .button { background: #00ff9d; color: black; padding: 15px 40px; text-decoration: none; border-radius: 50px; font-weight: bold; font-size: 1.2rem; display: inline-block; margin-top: 20px; }
+        
+        /* قسم المنتجات المميزة */
+        .featured { margin-top: 50px; text-align: center; }
+        .grid-small { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; max-width: 400px; margin: 20px auto; }
+        .grid-small img { width: 100%; height: 120px; object-fit: cover; border-radius: 8px; }
     </style>
 </head>
 <body>
     <div class="hero">
         <img src="images/file_000000006fd471fd880abafa95a07cc0.png" alt="شعار Urban DZ" class="logo">
         <h1>مرحباً بك في Urban DZ</h1>
-        <p>اكتشف أحدث تشكيلات الملابس العصرية في الجزائر</p>
-        <a href="shop.html" class="button">تصفح المنتجات</a>
+        <p>أفضل تصاميم الملابس العصرية في الجزائر</p>
+        <a href="shop.html" class="button">تصفح كل المنتجات</a>
+    </div>
+
+    <div class="featured">
+        <h3>منتجات مختارة</h3>
+        <div class="grid-small">
+            <img src="images/12f09fb0d69cc48b1524f6d3bf8caab2.jpg" alt="منتج 1">
+            <img src="images/34f69334ae9678325b0f2e81120417e9.jpg" alt="منتج 2">
+        </div>
     </div>
 </body>
 </html>
