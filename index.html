@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Urban DZ | المتجر الإلكتروني</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #00ff9d;
+            --dark: #0a0a0a;
+            --card: #161616;
+            --text: #ffffff;
+        }
+
+        body {
+            background: var(--dark);
+            color: var(--text);
+            font-family: 'Tajawal', sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .header { text-align: center; margin-bottom: 40px; }
+        .logo { font-size: 2.5rem; font-weight: 800; }
+        .logo span { color: var(--primary); }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .card {
+            background: var(--card);
+            border-radius: 15px;
+            padding: 15px;
+            transition: 0.4s;
+            border: 1px solid #333;
+        }
+
+        .card:hover { border-color: var(--primary); transform: translateY(-10px); }
+        .card img { width: 100%; height: 300px; object-fit: cover; border-radius: 10px; }
+        .info { padding-top: 15px; }
+        .price { color: var(--primary); font-size: 1.2rem; font-weight: bold; margin: 10px 0; }
+
+        .buy-btn {
+            background: var(--primary);
+            color: black;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .buy-btn:hover { background: #00cc7a; }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="logo">Urban <span>DZ</span></div>
+        <p>اكتشف أحدث تشكيلة ملابس عصرية في الجزائر</p>
+    </div>
+
+    <div class="grid">
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1520974735194-44b5d7dc0b3b" alt="Hoodie">
+            <div class="info">
+                <h3>هودي Urban كلاسيك</h3>
+                <p class="price">4500 دج</p>
+                <button class="buy-btn" onclick="order('هودي Urban كلاسيك', 4500)">شراء الآن</button>
+            </div>
+        </div>
+        
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246" alt="Pants">
+            <div class="info">
+                <h3>بنطال واسع عصري</h3>
+                <p class="price">3800 دج</p>
+                <button class="buy-btn" onclick="order('بنطال واسع عصري', 3800)">شراء الآن</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function order(product, price){
+            let phone = "213XXXXXXXXX"; // ضع رقم الواتساب الخاص بك هنا
+            let message = `مرحباً، أريد طلب المنتج: ${product} بسعر ${price} دج.`;
+            window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');
+        }
+    </script>
+</body>
+</html>
