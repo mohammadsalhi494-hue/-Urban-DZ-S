@@ -1,44 +1,170 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <title>متجر Urban DZ | المنتجات</title>
-    <style>
-        body { background: #0a0a0a; color: white; font-family: sans-serif; padding: 20px; }
-        h1 { text-align: center; color: #00ff9d; margin-bottom: 30px; }
-        .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; max-width: 800px; margin: auto; }
-        .card { background: #161616; padding: 15px; border-radius: 15px; border: 1px solid #333; transition: 0.3s; }
-        .card:hover { border-color: #00ff9d; }
-        img { width: 100%; height: 220px; object-fit: cover; border-radius: 10px; margin-bottom: 10px; }
-        .p-name { font-weight: bold; margin: 5px 0; }
-        .price { color: #00ff9d; font-size: 1.1rem; margin-bottom: 10px; }
-        .buy-btn { background: #00ff9d; color: black; border: none; padding: 12px; width: 100%; border-radius: 8px; font-weight: bold; cursor: pointer; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>متجر الملابس</title>
+
+<style>
+body{
+    margin:0;
+    font-family: Arial;
+    background: linear-gradient(135deg,#d2a679,#3b2f2f);
+    color:white;
+}
+
+header{
+    text-align:center;
+    padding:20px;
+    font-size:28px;
+    font-weight:bold;
+}
+
+.products{
+    display:grid;
+    grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+    padding:20px;
+}
+
+.card{
+    background:#fff;
+    color:#000;
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 5px 15px rgba(0,0,0,0.3);
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:scale(1.03);
+}
+
+.card img{
+    width:100%;
+    height:250px;
+    object-fit:cover;
+}
+
+.card-content{
+    padding:15px;
+}
+
+.price{
+    color:#b8860b;
+    font-weight:bold;
+}
+
+.btn{
+    display:block;
+    text-align:center;
+    background:#3b2f2f;
+    color:white;
+    padding:10px;
+    margin-top:10px;
+    border-radius:10px;
+    text-decoration:none;
+}
+</style>
 </head>
+
 <body>
-    <h1>مجموعتنا الجديدة</h1>
-    <div class="grid">
-        <div class="card">
-            <img src="images/12f09fb0d69cc48b1524f6d3bf8caab2.jpg" alt="منتج">
-            <p class="p-name">Urban Hoodie V1</p>
-            <p class="price">4500 دج</p>
-            <button class="buy-btn" onclick="openOrderForm('Urban Hoodie V1', 4500)">طلب الآن</button>
-        </div>
-        </div>
 
-    <script>
-        function openOrderForm(productName, price) {
-            let name = prompt("الاسم واللقب:");
-            if (!name) return;
-            let phone = prompt("رقم الهاتف:");
-            let state = prompt("الولاية:");
-            let quantity = prompt("عدد القطع:");
+<header>🛍️ Urban DZ - متجر الملابس</header>
 
-            if (name && phone && state && quantity) {
-                let message = `🛒 طلب جديد من Urban DZ%0A%0Aالمنتج: ${productName}%0Aالسعر: ${price} دج%0Aالزبون: ${name}%0Aالهاتف: ${phone}%0Aالولاية: ${state}%0Aالكمية: ${quantity}`;
-                window.open(`https://wa.me/213559049058?text=${message}`, '_blank');
-            }
-        }
-    </script>
+<div class="products">
+
+<!-- 1 -->
+<div class="card">
+<img src="https://images.unsplash.com/photo-1520975954732-35dd2229964f" alt="">
+<div class="card-content">
+<h3>تيشيرت أسود فخم</h3>
+<p class="price">2500 دج</p>
+<a class="btn" href="#">أضف إلى السلة</a>
+</div>
+</div>
+
+<!-- 2 -->
+<div class="card">
+<img src="https://images.unsplash.com/photo-1520975922284-3f1a6b8c3c02" alt="">
+<div class="card-content">
+<h3>هودي كراميل</h3>
+<p class="price">4500 دج</p>
+<a class="btn" href="#">أضف إلى السلة</a>
+</div>
+</div>
+
+<!-- 3 -->
+<div class="card">
+<img src="https://images.unsplash.com/photo-1520975682075-0b8c7c4f3c12" alt="">
+<div class="card-content">
+<h3>جينز أزرق كلاسيك</h3>
+<p class="price">5200 دج</p>
+<a class="btn" href="#">أضف إلى السلة</a>
+</div>
+</div>
+
+<!-- 4 -->
+<div class="card">
+<img src="https://images.unsplash.com/photo-1520975741222-1c3a9d1f1c33" alt="">
+<div class="card-content">
+<h3>جاكيت جلد</h3>
+<p class="price">9800 دج</p>
+<a class="btn" href="#">أضف إلى السلة</a>
+</div>
+</div>
+
+<!-- 5 -->
+<div class="card">
+<img src="https://images.unsplash.com/photo-1520975691155-7a4c3f2d1c99" alt="">
+<div class="card-content">
+<h3>قميص أبيض رسمي</h3>
+<p class="price">3200 دج</p>
+<a class="btn" href="#">أضف إلى السلة</a>
+</div>
+</div>
+
+<!-- 6 -->
+<div class="card">
+<img src="https://images.unsplash.com/photo-1520975937167-3c1a9d4f2b11" alt="">
+<div class="card-content">
+<h3>سويت شيرت رمادي</h3>
+<p class="price">4000 دج</p>
+<a class="btn" href="#">أضف إلى السلة</a>
+</div>
+</div>
+
+<!-- 7 -->
+<div class="card">
+<img src="https://images.unsplash.com/photo-1520975882490-5b2c9f7a1d44" alt="">
+<div class="card-content">
+<h3>بنطال رياضي</h3>
+<p class="price">3000 دج</p>
+<a class="btn" href="#">أضف إلى السلة</a>
+</div>
+</div>
+
+<!-- 8 -->
+<div class="card">
+<img src="https://images.unsplash.com/photo-1520975763420-6c1a8d3f4b22" alt="">
+<div class="card-content">
+<h3>سترة شتوية</h3>
+<p class="price">7500 دج</p>
+<a class="btn" href="#">أضف إلى السلة</a>
+</div>
+</div>
+
+<!-- 9 -->
+<div class="card">
+<img src="https://images.unsplash.com/photo-1520975701255-2c3b9f4a8d66" alt="">
+<div class="card-content">
+<h3>تيشيرت أبيض بسيط</h3>
+<p class="price">2200 دج</p>
+<a class="btn" href="#">أضف إلى السلة</a>
+</div>
+</div>
+
+</div>
+
 </body>
 </html>
