@@ -1,35 +1,88 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Urban DZ | وجهتك للأناقة</title>
-    <style>
-        body { background: #0a0a0a; color: #fff; font-family: 'Segoe UI', Tahoma, sans-serif; text-align: center; margin: 0; padding: 20px; }
-        .hero { margin: 30px 0; padding: 20px; }
-        .logo { max-width: 200px; border-radius: 50%; border: 3px solid #00ff9d; margin-bottom: 20px; box-shadow: 0 0 15px rgba(0,255,157,0.3); }
-        h1 { font-size: 2.2rem; color: #00ff9d; }
-        .button { background: #00ff9d; color: #000; padding: 15px 40px; text-decoration: none; border-radius: 30px; font-weight: bold; font-size: 1.1rem; display: inline-block; transition: 0.3s; }
-        .button:hover { transform: scale(1.05); background: #fff; }
-        .featured { margin-top: 50px; }
-        .grid-small { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; max-width: 500px; margin: 20px auto; }
-        .grid-small img { width: 100%; height: 150px; object-fit: cover; border-radius: 12px; border: 1px solid #333; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Urban DZ | متجر الملابس</title>
+
+<style>
+body{
+    margin:0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #d2a679, #2b1d1d);
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:white;
+}
+
+.container{
+    text-align:center;
+    padding:30px;
+    max-width:600px;
+    background: rgba(0,0,0,0.35);
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.5);
+    backdrop-filter: blur(6px);
+}
+
+h1{
+    font-size:40px;
+    margin-bottom:10px;
+}
+
+p{
+    font-size:18px;
+    line-height:1.6;
+    opacity:0.9;
+}
+
+.btn{
+    margin-top:20px;
+    display:inline-block;
+    padding:15px 30px;
+    background:#d2a679;
+    color:#2b1d1d;
+    text-decoration:none;
+    font-weight:bold;
+    border-radius:12px;
+    transition:0.3s;
+}
+
+.btn:hover{
+    background:white;
+    color:#2b1d1d;
+    transform:scale(1.05);
+}
+
+.features{
+    margin-top:20px;
+    text-align:right;
+    font-size:16px;
+    opacity:0.9;
+}
+</style>
 </head>
+
 <body>
-    <div class="hero">
-        <img src="images/file_000000006fd471fd880abafa95a07cc0.png" alt="شعار Urban DZ" class="logo">
-        <h1>Urban DZ</h1>
-        <p>تصاميم عصرية تعكس أسلوبك الخاص في الجزائر.</p>
-        <a href="shop.html" class="button">تصفح التشكيلة الكاملة</a>
+
+<div class="container">
+
+    <h1>🛍️ Urban DZ</h1>
+    <p>مرحباً بك في متجر الملابس الفخم</p>
+    <p>أحدث صيحات الموضة بأسعار مناسبة وجودة عالية</p>
+
+    <div class="features">
+        ✔ ملابس عصرية رجالية ونسائية<br>
+        ✔ جودة عالية وسعر مناسب<br>
+        ✔ توصيل سريع داخل الجزائر<br>
+        ✔ الدفع عند الاستلام
     </div>
 
-    <div class="featured">
-        <h3>منتجات مختارة</h3>
-        <div class="grid-small">
-            <img src="images/12f09fb0d69cc48b1524f6d3bf8caab2.jpg" alt="هودي عصري">
-            <img src="images/34f69334ae9678325b0f2e81120417e9.jpg" alt="بنطال Urban">
-        </div>
-    </div>
+    <a class="btn" href="shop.html">تصفح المتجر</a>
+
+</div>
+
 </body>
 </html>
