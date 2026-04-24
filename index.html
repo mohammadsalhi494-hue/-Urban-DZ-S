@@ -1,88 +1,230 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Urban DZ | متجر الملابس</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أزياء لوك - الرئيسية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<style>
-body{
-    margin:0;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #d2a679, #2b1d1d);
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    color:white;
-}
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: #f8f9fa;
+            color: #1a1a2e;
+        }
 
-.container{
-    text-align:center;
-    padding:30px;
-    max-width:600px;
-    background: rgba(0,0,0,0.35);
-    border-radius:20px;
-    box-shadow:0 10px 30px rgba(0,0,0,0.5);
-    backdrop-filter: blur(6px);
-}
-
-h1{
-    font-size:40px;
-    margin-bottom:10px;
-}
-
-p{
-    font-size:18px;
-    line-height:1.6;
-    opacity:0.9;
-}
-
-.btn{
-    margin-top:20px;
-    display:inline-block;
-    padding:15px 30px;
-    background:#d2a679;
-    color:#2b1d1d;
-    text-decoration:none;
-    font-weight:bold;
-    border-radius:12px;
-    transition:0.3s;
-}
-
-.btn:hover{
-    background:white;
-    color:#2b1d1d;
-    transform:scale(1.05);
-}
-
-.features{
-    margin-top:20px;
-    text-align:right;
-    font-size:16px;
-    opacity:0.9;
-}
-</style>
+        header {
+            background: linear-gradient(135deg, #1e1e2f 0%, #2d2d44 100%);
+            color: white;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+        }
+        .logo span {
+            color: #e74c3c;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+            transition: 0.3s;
+        }
+        nav a:hover, nav a.active {
+            color: #e74c3c;
+        }
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.pexels.com/photos/298863/pexels-photo-298863.jpeg?auto=compress&cs=tinysrgb&w=1260&h=500&fit=crop');
+            background-size: cover;
+            background-position: center;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+        .hero-content h1 {
+            font-size: 58px;
+            margin-bottom: 20px;
+        }
+        .hero-content p {
+            font-size: 22px;
+            margin-bottom: 30px;
+        }
+        .btn-shop {
+            background: #e74c3c;
+            color: white;
+            padding: 15px 40px;
+            font-size: 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+            display: inline-block;
+        }
+        .btn-shop:hover {
+            background: #c0392b;
+            transform: scale(1.05);
+        }
+        .categories {
+            padding: 60px 5%;
+            text-align: center;
+        }
+        .categories h2 {
+            font-size: 36px;
+            margin-bottom: 40px;
+            color: #1e1e2f;
+        }
+        .cat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .cat-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .cat-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 30px rgba(0,0,0,0.15);
+        }
+        .cat-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+        .cat-card h3 {
+            padding: 20px;
+            font-size: 24px;
+            color: #e74c3c;
+        }
+        .features {
+            background: #1e1e2f;
+            padding: 60px 5%;
+            color: white;
+            text-align: center;
+        }
+        .features h2 {
+            font-size: 36px;
+            margin-bottom: 40px;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .feature {
+            padding: 20px;
+        }
+        .feature i {
+            font-size: 48px;
+            color: #e74c3c;
+            margin-bottom: 20px;
+        }
+        .feature h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        footer {
+            background: #111122;
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 32px; }
+            nav { margin-top: 15px; }
+        }
+    </style>
 </head>
-
 <body>
+<header>
+    <div class="logo">أزياء <span>⭐</span> لوك</div>
+    <nav>
+        <a href="index.html" class="active">الرئيسية</a>
+        <a href="shop.html">المتجر</a>
+    </nav>
+</header>
 
-<div class="container">
-
-    <h1>🛍️ Urban DZ</h1>
-    <p>مرحباً بك في متجر الملابس الفخم</p>
-    <p>أحدث صيحات الموضة بأسعار مناسبة وجودة عالية</p>
-
-    <div class="features">
-        ✔ ملابس عصرية رجالية ونسائية<br>
-        ✔ جودة عالية وسعر مناسب<br>
-        ✔ توصيل سريع داخل الجزائر<br>
-        ✔ الدفع عند الاستلام
+<div class="hero">
+    <div class="hero-content">
+        <h1>أحدث صيحات الموضة 2025</h1>
+        <p>اكتشف تشكيلتنا الجديدة من الملابس العصرية بأسعار لا تقبل المنافسة</p>
+        <a href="shop.html" class="btn-shop"><i class="fas fa-shopping-bag"></i> تسوق الآن</a>
     </div>
-
-    <a class="btn" href="shop.html">تصفح المتجر</a>
-
 </div>
 
+<section class="categories">
+    <h2>الأقسام الأكثر مبيعاً</h2>
+    <div class="cat-grid">
+        <div class="cat-card" onclick="location.href='shop.html'">
+            <img src="https://images.pexels.com/photos/1043474/pexels-photo-1043474.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop" alt="رجالي">
+            <h3>👔 أزياء رجالية</h3>
+        </div>
+        <div class="cat-card" onclick="location.href='shop.html'">
+            <img src="https://images.pexels.com/photos/1468379/pexels-photo-1468379.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop" alt="نسائي">
+            <h3>👗 أزياء نسائية</h3>
+        </div>
+        <div class="cat-card" onclick="location.href='shop.html'">
+            <img src="https://images.pexels.com/photos/157675/fashion-men-s-individuality-black-and-white-157675.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop" alt="اكسسوارات">
+            <h3>🕶️ اكسسوارات</h3>
+        </div>
+    </div>
+</section>
+
+<section class="features">
+    <h2>لماذا تختار أزياء لوك؟</h2>
+    <div class="features-grid">
+        <div class="feature">
+            <i class="fas fa-truck-fast"></i>
+            <h3>توصيل سريع</h3>
+            <p>توصيل مجاني خلال 3 أيام</p>
+        </div>
+        <div class="feature">
+            <i class="fas fa-rotate-left"></i>
+            <h3>إرجاع مجاني</h3>
+            <p>إرجاع خلال 14 يوم</p>
+        </div>
+        <div class="feature">
+            <i class="fas fa-shield-alt"></i>
+            <h3>جودة مضمونة</h3>
+            <p>أفضل المواد الأصلية</p>
+        </div>
+        <div class="feature">
+            <i class="fas fa-headset"></i>
+            <h3>دعم 24/7</h3>
+            <p>خدمة عملاء على مدار الساعة</p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>© 2025 متجر أزياء لوك - جميع الحقوق محفوظة</p>
+    <p style="margin-top: 10px; font-size: 14px;">أفضل متجر لبيع الملابس الأنيقة والعصرية</p>
+</footer>
 </body>
 </html>
