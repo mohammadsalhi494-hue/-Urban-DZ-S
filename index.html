@@ -1,647 +1,224 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>SHADOWACE | DARK • BOLD • UNSTOPPABLE</title>
-  <!-- Font Awesome 6 -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Triquetra Shop | متجر التريكوات</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    :root {
-      --neon-green: #00ff88;
-      --dark-bg: #050505;
-      --card-dark: #0a0a0a;
-      --text-dim: #b0b0b0;
-      --text-white: #ffffff;
-      --border-glow: rgba(0, 255, 136, 0.2);
-    }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
 
-    body {
-      font-family: 'Montserrat', 'Cairo', sans-serif;
-      background-color: var(--dark-bg);
-      color: var(--text-white);
-      line-height: 1.5;
-      overflow-x: hidden;
-    }
+        /* حاوية الفيديو الخلفية */
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            overflow: hidden;
+        }
 
-    /* custom scroll */
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: #1a1a1a; }
-    ::-webkit-scrollbar-thumb { background: var(--neon-green); border-radius: 10px; }
+        #bgVideo {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: cover;
+        }
 
-    /* header */
-    .main-header {
-      background: rgba(5, 5, 5, 0.98);
-      backdrop-filter: blur(12px);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      border-bottom: 1px solid var(--border-glow);
-      padding: 1rem 0;
-    }
-    .nav-container {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 0 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-    .logo {
-      font-size: 1.8rem;
-      font-weight: 900;
-      letter-spacing: 3px;
-    }
-    .logo .shadow {
-      color: var(--text-white);
-    }
-    .logo .ace {
-      color: var(--neon-green);
-      text-shadow: 0 0 8px rgba(0,255,136,0.5);
-    }
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-    }
-    .nav-links a {
-      text-decoration: none;
-      font-weight: 600;
-      color: #ccc;
-      transition: 0.3s;
-      font-size: 0.9rem;
-      letter-spacing: 1px;
-    }
-    .nav-links a:hover, .nav-links a.active {
-      color: var(--neon-green);
-    }
-    .cart-icon {
-      font-size: 1.3rem;
-      color: var(--neon-green);
-      cursor: pointer;
-    }
-    @media (max-width: 768px) {
-      .nav-container { flex-direction: column; gap: 15px; }
-      .nav-links { gap: 1.2rem; flex-wrap: wrap; justify-content: center; }
-    }
+        /* طبقة شفافة فوق الفيديو عشان النص يبان */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: -1;
+        }
 
-    /* HERO SECTION - مطابق للصورة بالكامل */
-    .hero {
-      min-height: 90vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      background: radial-gradient(circle at 30% 20%, #0a0a0a, #000000);
-      padding: 3rem 2rem;
-    }
-    .hero-content {
-      max-width: 1200px;
-      width: 100%;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-      gap: 3rem;
-    }
-    /* تريكو ثابت - نفس الستايل */
-    .shirt-display {
-      flex: 1;
-      min-width: 280px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .shirt-card {
-      background: linear-gradient(145deg, #111111, #080808);
-      border-radius: 40px;
-      padding: 2rem;
-      border: 1px solid rgba(0,255,136,0.2);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-      text-align: center;
-    }
-    .shirt-icon {
-      font-size: 14rem;
-      color: #1a1a1a;
-      filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
-      transition: 0.3s;
-    }
-    .shirt-card:hover .shirt-icon {
-      transform: scale(1.02);
-    }
-    .shirt-label {
-      margin-top: 1rem;
-      color: var(--neon-green);
-      font-weight: 600;
-      letter-spacing: 2px;
-      font-size: 0.8rem;
-    }
-    /* النصوص الجانبية - مطابقة للصورة */
-    .hero-text {
-      flex: 1;
-      min-width: 300px;
-    }
-    .brand-name {
-      font-size: 4rem;
-      font-weight: 900;
-      letter-spacing: 8px;
-      margin-bottom: 1rem;
-      background: linear-gradient(135deg, #ffffff, var(--neon-green));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-    .features-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin: 1.5rem 0;
-    }
-    .feature-tag {
-      background: rgba(0,255,136,0.08);
-      border: 1px solid rgba(0,255,136,0.3);
-      padding: 6px 16px;
-      border-radius: 30px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      letter-spacing: 1px;
-    }
-    .slogan-line {
-      font-size: 1.2rem;
-      color: var(--text-dim);
-      margin: 0.8rem 0;
-      letter-spacing: 1px;
-    }
-    .highlight-line {
-      font-size: 1.1rem;
-      font-weight: 500;
-      margin: 0.5rem 0;
-    }
-    .bold-phrase {
-      font-size: 1.6rem;
-      font-weight: 900;
-      margin-top: 1.2rem;
-    }
-    .bold-phrase span {
-      color: var(--neon-green);
-      display: inline-block;
-    }
-    .bold-phrase .dark, .bold-phrase .bold, .bold-phrase .unstoppable {
-      display: inline-block;
-      margin: 0 5px;
-    }
-    .shop-btn {
-      background: transparent;
-      border: 2px solid var(--neon-green);
-      color: var(--neon-green);
-      padding: 12px 32px;
-      border-radius: 40px;
-      font-weight: bold;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: 0.3s;
-      margin-top: 2rem;
-      display: inline-block;
-      text-decoration: none;
-      letter-spacing: 2px;
-    }
-    .shop-btn:hover {
-      background: var(--neon-green);
-      color: #000;
-      box-shadow: 0 0 20px rgba(0,255,136,0.4);
-    }
+        /* محتوى المتجر */
+        .shop-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            color: white;
+            text-align: center;
+        }
 
-    @media (max-width: 768px) {
-      .brand-name { font-size: 2.5rem; letter-spacing: 4px; }
-      .shirt-icon { font-size: 8rem; }
-      .bold-phrase { font-size: 1.2rem; }
-    }
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+            letter-spacing: 2px;
+        }
 
-    /* منتجات */
-    .container {
-      max-width: 1300px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-    .section-title {
-      font-size: 2rem;
-      margin: 3rem 0 1.5rem;
-      font-weight: 700;
-      letter-spacing: 2px;
-    }
-    .section-title span {
-      color: var(--neon-green);
-    }
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 2rem;
-      margin: 2rem 0;
-    }
-    .product-card {
-      background: var(--card-dark);
-      border-radius: 24px;
-      overflow: hidden;
-      border: 1px solid #222;
-      transition: 0.3s;
-      text-align: center;
-      padding: 1.8rem 1rem;
-    }
-    .product-card:hover {
-      transform: translateY(-5px);
-      border-color: var(--neon-green);
-    }
-    .product-img {
-      font-size: 3.5rem;
-      margin-bottom: 1rem;
-    }
-    .product-title {
-      font-weight: 700;
-      font-size: 1.1rem;
-      margin: 10px 0;
-    }
-    .product-price {
-      color: var(--neon-green);
-      font-weight: bold;
-      font-size: 1.2rem;
-    }
-    .order-btn {
-      background: #1f1f1f;
-      color: white;
-      border: 1px solid #333;
-      padding: 8px 20px;
-      border-radius: 40px;
-      margin-top: 12px;
-      cursor: pointer;
-      font-weight: 600;
-      transition: 0.2s;
-    }
-    .order-btn:hover {
-      background: var(--neon-green);
-      color: black;
-    }
+        .subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
 
-    /* about section */
-    .about-section {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      background: #0a0a0a;
-      border-radius: 40px;
-      padding: 2rem;
-      margin: 3rem 0;
-      border: 1px solid #1a2a1a;
-    }
-    .about-text h3 {
-      font-size: 1.8rem;
-      margin-bottom: 1rem;
-    }
-    .about-text h3 span {
-      color: var(--neon-green);
-    }
-    .features-list {
-      display: flex;
-      gap: 1.5rem;
-      margin-top: 1.5rem;
-      flex-wrap: wrap;
-    }
-    .feature {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: #141414;
-      padding: 6px 18px;
-      border-radius: 40px;
-    }
+        /* شبكة المنتجات */
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            width: 100%;
+            margin-top: 20px;
+        }
 
-    /* promo banner */
-    .promo-banner {
-      background: linear-gradient(135deg, #0a1f0a, #051505);
-      border-radius: 40px;
-      padding: 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin: 2rem 0;
-      border: 1px solid rgba(0,255,136,0.3);
-    }
-    .promo-btn {
-      background: var(--neon-green);
-      color: #000;
-      padding: 10px 28px;
-      border-radius: 40px;
-      text-decoration: none;
-      font-weight: bold;
-    }
+        .product-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
+            padding: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
 
-    /* footer */
-    footer {
-      background: #020202;
-      border-top: 1px solid #1a3a1a;
-      margin-top: 3rem;
-      padding: 2rem 2rem 1rem;
-    }
-    .footer-top {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 2rem;
-      max-width: 1300px;
-      margin: 0 auto;
-    }
-    .footer-brand .logo {
-      margin-bottom: 1rem;
-    }
-    .footer-col h4 {
-      margin-bottom: 1rem;
-      color: var(--neon-green);
-    }
-    .footer-col ul {
-      list-style: none;
-    }
-    .footer-col a {
-      color: #aaa;
-      text-decoration: none;
-      line-height: 2;
-    }
-    .footer-col a:hover { color: var(--neon-green); }
-    .footer-bottom {
-      text-align: center;
-      padding-top: 2rem;
-      border-top: 1px solid #1f2a1a;
-      margin-top: 2rem;
-      max-width: 1300px;
-      margin-left: auto;
-      margin-right: auto;
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-    }
-    .social-icons a {
-      color: var(--neon-green);
-      margin-left: 15px;
-      font-size: 1.3rem;
-    }
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            background: rgba(255, 255, 255, 0.2);
+        }
 
-    /* cookie consent */
-    .cookie-consent {
-      position: fixed;
-      bottom: 20px;
-      left: 20px;
-      right: 20px;
-      background: #111;
-      border: 1px solid var(--neon-green);
-      padding: 1rem 1.5rem;
-      border-radius: 60px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      z-index: 1000;
-      transform: translateY(150px);
-      transition: transform 0.3s ease;
-    }
-    .cookie-consent.show { transform: translateY(0); }
-    .cookie-btn {
-      background: var(--neon-green);
-      border: none;
-      padding: 8px 22px;
-      border-radius: 40px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    .countdown-badge {
-      background: #000000aa;
-      backdrop-filter: blur(4px);
-      padding: 6px 16px;
-      border-radius: 60px;
-      display: inline-flex;
-      gap: 12px;
-      font-weight: 600;
-      margin-top: 15px;
-      font-size: 0.9rem;
-    }
-  </style>
+        .product-img {
+            width: 100%;
+            height: 180px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .product-title {
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .product-price {
+            font-size: 1.3rem;
+            color: #ffd966;
+            margin: 8px 0;
+        }
+
+        .buy-btn {
+            background: #4a6fa5;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        .buy-btn:hover {
+            background: #6b8cae;
+        }
+
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            .product-title { font-size: 1.2rem; }
+        }
+    </style>
 </head>
 <body>
 
-<header class="main-header">
-  <div class="nav-container">
-    <div class="logo">
-      <span class="shadow">SHADOW</span><span class="ace">ACE</span>
-    </div>
-    <ul class="nav-links">
-      <li><a href="#" class="active">HOME</a></li>
-      <li><a href="#">MEN</a></li>
-      <li><a href="#">WOMEN</a></li>
-      <li><a href="#">ACCESSORIES</a></li>
-      <li><a href="#">CONTACT</a></li>
-    </ul>
-    <div class="cart-icon"><i class="fas fa-shopping-bag"></i></div>
-  </div>
-</header>
-
-<!-- HERO SECTION - مطابق تماماً للصورة مع تريكو ثابت -->
-<section class="hero">
-  <div class="hero-content">
-    <!-- تريكو ثابت (بدون دوران) -->
-    <div class="shirt-display">
-      <div class="shirt-card">
-        <i class="fas fa-tshirt shirt-icon"></i>
-        <div class="shirt-label">PREMIUM COLLECTION</div>
-      </div>
-    </div>
-    <!-- النصوص الجانبية - نفس الكلمات من الصورة -->
-    <div class="hero-text">
-      <div class="brand-name">SHADOWACE</div>
-      <div class="features-grid">
-        <span class="feature-tag">PREMIUM COTTON</span>
-        <span class="feature-tag">BOLD DESIGN</span>
-        <span class="feature-tag">OVERSIZED FIT</span>
-      </div>
-      <div class="slogan-line">ULTRA-SOFT. ALL-DAY COMFORT.</div>
-      <div class="slogan-line">STAND OUT. BE DIFFERENT.</div>
-      <div class="slogan-line">STREET-READY. EFFORTLESS STYLE.</div>
-      <div class="bold-phrase">
-        <span class="dark">DARK.</span>
-        <span class="bold">BOLD.</span>
-        <span class="unstoppable">UNSTOPPABLE</span>
-      </div>
-      <a href="#shop" class="shop-btn">SHOP NOW →</a>
-      <div class="countdown-badge">
-        <span>⚡ LIMITED OFFER</span>
-        <span><span id="days">00</span>d</span>
-        <span><span id="hours">00</span>h</span>
-        <span><span id="minutes">00</span>m</span>
-        <span><span id="seconds">00</span>s</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="container">
-  <!-- منتجات -->
-  <h2 class="section-title" id="shop">FEATURED <span>COLLECTION</span></h2>
-  <div class="products-grid">
-    <div class="product-card">
-      <div class="product-img"><i class="fas fa-tshirt"></i></div>
-      <div class="product-title">SHADOWACE OVERSIZED TEE</div>
-      <div class="product-price">3,900 DZD</div>
-      <button class="order-btn" onclick="openOrder('SHADOWACE Oversized Tee', 3900)">ORDER →</button>
-    </div>
-    <div class="product-card">
-      <div class="product-img"><i class="fas fa-vest"></i></div>
-      <div class="product-title">BOLD HOODIE</div>
-      <div class="product-price">5,900 DZD</div>
-      <button class="order-btn" onclick="openOrder('Bold Hoodie', 5900)">ORDER →</button>
-    </div>
-    <div class="product-card">
-      <div class="product-img"><i class="fas fa-shoe-prints"></i></div>
-      <div class="product-title">STREET SNEAKERS</div>
-      <div class="product-price">7,500 DZD</div>
-      <button class="order-btn" onclick="openOrder('Street Sneakers', 7500)">ORDER →</button>
-    </div>
-    <div class="product-card">
-      <div class="product-img"><i class="fas fa-hat-cowboy"></i></div>
-      <div class="product-title">SHADOW CAP</div>
-      <div class="product-price">1,800 DZD</div>
-      <button class="order-btn" onclick="openOrder('Shadow Cap', 1800)">ORDER →</button>
-    </div>
-  </div>
-
-  <!-- About Section -->
-  <div class="about-section">
-    <div class="about-text">
-      <h3><span>SHADOWACE</span> | DARK BOLD DNA</h3>
-      <p>علامة تجارية جزائرية مستوحاة من الجرأة والقوة. نصنع ملابس oversized فاخرة، قطن فائق النعومة، تصميمات تليق بالشارع وتعبر عن هويتك. Premium Cotton • Oversized Fit • Street-ready. كن مختلفاً، كن Shadowace.</p>
-      <div class="features-list">
-        <div class="feature"><i class="fas fa-truck"></i><span>Fast Delivery</span></div>
-        <div class="feature"><i class="fas fa-shield-alt"></i><span>Premium Quality</span></div>
-        <div class="feature"><i class="fas fa-headset"></i><span>24/7 Support</span></div>
-      </div>
-    </div>
-    <div class="about-image">
-      <div style="background:#111; min-height:200px; display:flex; align-items:center; justify-content:center; border-radius:28px; border:1px solid #2a2a2a;">
-        <div style="text-align:center;">
-          <div style="font-size:4rem">🖤</div>
-          <small style="color:var(--neon-green);">#SHADOWACE</small>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Promo Banner -->
-  <div class="promo-banner">
-    <div class="promo-text">
-      <h2>FIRST ORDER: -20% 🎁</h2>
-      <p>Use code: <strong style="background:#000; color:var(--neon-green); padding:5px 12px; border-radius:20px;">SHADOW20</strong></p>
-    </div>
-    <a href="#" class="promo-btn">SHOP NOW →</a>
-  </div>
+<!-- الفيديو الخلفية المتحرك (تريكوات) -->
+<div class="video-background">
+    <video autoplay loop muted playsinline id="bgVideo">
+        <!-- استبدل "triquetra-bg.mp4" باسم ملف الفيديو حقك -->
+        <source src="triquetra-bg.mp4" type="video/mp4">
+        متصفحك لا يدعم فيديو الخلفية.
+    </video>
 </div>
+<div class="overlay"></div>
 
-<!-- Footer -->
-<footer>
-  <div class="footer-top">
-    <div class="footer-brand">
-      <div class="logo"><span class="shadow">SHADOW</span><span class="ace">ACE</span></div>
-      <p>Bold designs for the fearless. Streetwear with attitude.</p>
-      <div class="social-icons" style="margin-top: 18px;">
-        <a href="#"><i class="fab fa-facebook"></i></a>
-        <a href="#"><i class="fab fa-instagram"></i></a>
-        <a href="https://wa.me/213559049058"><i class="fab fa-whatsapp"></i></a>
-      </div>
-    </div>
-    <div class="footer-col">
-      <h4>Explore</h4>
-      <ul>
-        <li><a href="#">Men</a></li>
-        <li><a href="#">Women</a></li>
-        <li><a href="#">Accessories</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Contact</h4>
-      <ul>
-        <li><a href="https://wa.me/213559049058">WhatsApp: +213559049058</a></li>
-        <li><a href="#">Instagram: @shadowace.dz</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <span>© 2025 SHADOWACE — All rights reserved</span>
-    <span>🇩🇿 Made in Algeria | DARK. BOLD. UNSTOPPABLE.</span>
-  </div>
-</footer>
+<!-- محتوى المتجر -->
+<div class="shop-container">
+    <h1>✦ TRIQUETRA SHOP ✦</h1>
+    <div class="subtitle">رمز التوازن والحركة الأبدية</div>
 
-<!-- Cookie Consent -->
-<div class="cookie-consent" id="cookieConsent">
-  <p>🍪 We use cookies to enhance your experience. By continuing, you agree.</p>
-  <button class="cookie-btn" onclick="acceptCookies()">Accept ✅</button>
+    <div class="products">
+        <div class="product-card">
+            <div class="product-img">🌀</div>
+            <div class="product-title">قلادة تريكوات فضة</div>
+            <div class="product-price">$39.99</div>
+            <button class="buy-btn">اشتري الآن</button>
+        </div>
+        <div class="product-card">
+            <div class="product-img">📿</div>
+            <div class="product-title">خاتم التريكوات</div>
+            <div class="product-price">$49.99</div>
+            <button class="buy-btn">اشتري الآن</button>
+        </div>
+        <div class="product-card">
+            <div class="product-img">🎨</div>
+            <div class="product-title">بوستر تريكوات مضيء</div>
+            <div class="product-price">$19.99</div>
+            <button class="buy-btn">اشتري الآن</button>
+        </div>
+        <div class="product-card">
+            <div class="product-img">🖌️</div>
+            <div class="product-title">طقم ملصقات تريكوات</div>
+            <div class="product-price">$12.99</div>
+            <button class="buy-btn">اشتري الآن</button>
+        </div>
+    </div>
+    <footer>◎ Triquetra Shop - حيث يلتقي الروحي بالحركة ◎</footer>
 </div>
 
 <script>
-  // Countdown Timer
-  function startCountdown() {
-    const targetDate = new Date();
-    targetDate.setDate(targetDate.getDate() + 3);
-    targetDate.setHours(23, 59, 59, 0);
-    function updateCountdown() {
-      const now = new Date().getTime();
-      const distance = targetDate - now;
-      if (distance < 0) {
-        document.getElementById('days').innerText = '00';
-        document.getElementById('hours').innerText = '00';
-        document.getElementById('minutes').innerText = '00';
-        document.getElementById('seconds').innerText = '00';
-        return;
-      }
-      document.getElementById('days').innerText = Math.floor(distance / (1000*60*60*24)).toString().padStart(2,'0');
-      document.getElementById('hours').innerText = Math.floor((distance % (86400000)) / (3600000)).toString().padStart(2,'0');
-      document.getElementById('minutes').innerText = Math.floor((distance % 3600000) / 60000).toString().padStart(2,'0');
-      document.getElementById('seconds').innerText = Math.floor((distance % 60000) / 1000).toString().padStart(2,'0');
+    // رسالة عند الضغط على زر الشراء
+    const btns = document.querySelectorAll('.buy-btn');
+    btns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            alert('✨ تمت إضافة المنتج إلى السلة ✨');
+        });
+    });
+
+    // التأكد من أن الفيديو يعمل حتى لو حجمه صغير (1.3MB)
+    const video = document.getElementById('bgVideo');
+    if(video) {
+        video.addEventListener('error', function() {
+            console.log("فيديو التريكوات لم يتم تحميله، تأكد من مسار الملف");
+        });
     }
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-  }
-  startCountdown();
-
-  // Cookie Consent
-  function acceptCookies() {
-    localStorage.setItem('cookiesAccepted', 'true');
-    document.getElementById('cookieConsent').classList.remove('show');
-  }
-  if (!localStorage.getItem('cookiesAccepted')) {
-    setTimeout(function() { 
-      document.getElementById('cookieConsent').classList.add('show'); 
-    }, 1500);
-  }
-
-  // WhatsApp Order Function
-  function openOrder(productName, price) {
-    let name = prompt("Full name:");
-    if (!name) return;
-    let phone = prompt("Phone number:");
-    if (!phone) return;
-    let wilaya = prompt("Wilaya:");
-    if (!wilaya) return;
-    let qty = prompt("Quantity:", "1");
-    if (!qty) return;
-    let total = price * parseInt(qty);
-    let msg = `NEW ORDER! 🖤%0A%0AProduct: ${productName}%0APrice: ${price} DZD%0ACustomer: ${name}%0APhone: ${phone}%0AWilaya: ${wilaya}%0AQty: ${qty}%0ATotal: ${total} DZD`;
-    window.open(`https://wa.me/213559049058?text=${msg}`, '_blank');
-  }
 </script>
+
 </body>
-  </html>
+</html>
