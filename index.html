@@ -1,224 +1,74 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Triquetra Shop | متجر التريكوات</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-
-        /* حاوية الفيديو الخلفية */
-        .video-background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -2;
-            overflow: hidden;
-        }
-
-        #bgVideo {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
-            object-fit: cover;
-        }
-
-        /* طبقة شفافة فوق الفيديو عشان النص يبان */
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            z-index: -1;
-        }
-
-        /* محتوى المتجر */
-        .shop-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 20px;
-            color: white;
-            text-align: center;
-        }
-
-        h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
-            letter-spacing: 2px;
-        }
-
-        .subtitle {
-            font-size: 1.2rem;
-            margin-bottom: 40px;
-            opacity: 0.9;
-        }
-
-        /* شبكة المنتجات */
-        .products {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            max-width: 1200px;
-            width: 100%;
-            margin-top: 20px;
-        }
-
-        .product-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(12px);
-            border-radius: 20px;
-            padding: 20px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-
-        .product-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .product-img {
-            width: 100%;
-            height: 180px;
-            background: rgba(0,0,0,0.3);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            margin-bottom: 15px;
-        }
-
-        .product-title {
-            font-size: 1.4rem;
-            font-weight: bold;
-            margin: 10px 0;
-        }
-
-        .product-price {
-            font-size: 1.3rem;
-            color: #ffd966;
-            margin: 8px 0;
-        }
-
-        .buy-btn {
-            background: #4a6fa5;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 30px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background 0.3s;
-            margin-top: 10px;
-            width: 100%;
-        }
-
-        .buy-btn:hover {
-            background: #6b8cae;
-        }
-
-        footer {
-            margin-top: 50px;
-            text-align: center;
-            padding: 20px;
-            font-size: 0.8rem;
-            opacity: 0.7;
-        }
-
-        @media (max-width: 768px) {
-            h1 { font-size: 2rem; }
-            .product-title { font-size: 1.2rem; }
-        }
-    </style>
+    <title>SHADOWLACE | Wear the Mystery</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Oswald:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-
-<!-- الفيديو الخلفية المتحرك (تريكوات) -->
-<div class="video-background">
-    <video autoplay loop muted playsinline id="bgVideo">
-        <!-- استبدل "triquetra-bg.mp4" باسم ملف الفيديو حقك -->
-        <source src="triquetra-bg.mp4" type="video/mp4">
-        متصفحك لا يدعم فيديو الخلفية.
-    </video>
-</div>
-<div class="overlay"></div>
-
-<!-- محتوى المتجر -->
-<div class="shop-container">
-    <h1>✦ TRIQUETRA SHOP ✦</h1>
-    <div class="subtitle">رمز التوازن والحركة الأبدية</div>
-
-    <div class="products">
-        <div class="product-card">
-            <div class="product-img">🌀</div>
-            <div class="product-title">قلادة تريكوات فضة</div>
-            <div class="product-price">$39.99</div>
-            <button class="buy-btn">اشتري الآن</button>
+    <nav>
+        <div class="logo">SHADOWLACE</div>
+        <ul class="nav-links">
+            <li><a href="index.html">الرئيسية</a></li>
+            <li><a href="shop.html">المتجر</a></li>
+            <li><a href="#about">عن الماركة</a></li>
+        </ul>
+        <div class="cart-icon">
+            <a href="shop.html"><i class="fas fa-shopping-cart"></i> <span id="cart-count">0</span></a>
         </div>
-        <div class="product-card">
-            <div class="product-img">📿</div>
-            <div class="product-title">خاتم التريكوات</div>
-            <div class="product-price">$49.99</div>
-            <button class="buy-btn">اشتري الآن</button>
-        </div>
-        <div class="product-card">
-            <div class="product-img">🎨</div>
-            <div class="product-title">بوستر تريكوات مضيء</div>
-            <div class="product-price">$19.99</div>
-            <button class="buy-btn">اشتري الآن</button>
-        </div>
-        <div class="product-card">
-            <div class="product-img">🖌️</div>
-            <div class="product-title">طقم ملصقات تريكوات</div>
-            <div class="product-price">$12.99</div>
-            <button class="buy-btn">اشتري الآن</button>
-        </div>
-    </div>
-    <footer>◎ Triquetra Shop - حيث يلتقي الروحي بالحركة ◎</footer>
-</div>
+    </nav>
 
-<script>
-    // رسالة عند الضغط على زر الشراء
-    const btns = document.querySelectorAll('.buy-btn');
-    btns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            alert('✨ تمت إضافة المنتج إلى السلة ✨');
-        });
-    });
+    <header class="hero">
+        <div class="hero-content">
+            <p class="tagline">WEAR THE MYSTERY. OWN THE MOMENT.</p>
+            <h1 class="brand-title">SHADOWLACE</h1>
+            <div class="hero-image-container">
+                <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Shadowlace Hoodie" class="main-hoodie">
+                <div class="smoke-effect"></div>
+            </div>
+            <div class="hero-actions">
+                <a href="shop.html" class="btn-primary">اشتري الآن</a>
+            </div>
+        </div>
+        
+        <div class="features-bar">
+            <div class="feature">
+                <i class="fas fa-certificate"></i>
+                <div>
+                    <h3>PREMIUM COTTON</h3>
+                    <p>ULTRA-SOFT. ALL-DAY COMFORT.</p>
+                </div>
+            </div>
+            <div class="feature">
+                <i class="fas fa-vector-square"></i>
+                <div>
+                    <h3>BOLD DESIGN</h3>
+                    <p>STAND OUT. BE DIFFERENT.</p>
+                </div>
+            </div>
+            <div class="feature">
+                <i class="fas fa-layer-group"></i>
+                <div>
+                    <h3>OVERSIZED FIT</h3>
+                    <p>STREET-READY. EFFORTLESS STYLE.</p>
+                </div>
+            </div>
+        </div>
+        <div class="bottom-tag">DARK. BOLD. UNSTOPPABLE.</div>
+    </header>
 
-    // التأكد من أن الفيديو يعمل حتى لو حجمه صغير (1.3MB)
-    const video = document.getElementById('bgVideo');
-    if(video) {
-        video.addEventListener('error', function() {
-            console.log("فيديو التريكوات لم يتم تحميله، تأكد من مسار الملف");
-        });
-    }
-</script>
+    <section id="about" class="about-section">
+        <h2>عن SHADOWLACE</h2>
+        <p>نحن لا نصنع مجرد ملابس، نحن نصنع هوية. تصاميمنا مستوحاة من الغموض والقوة، مصممة لأولئك الذين يجرؤون على التميز.</p>
+    </section>
 
+    <footer>
+        <p>&copy; 2026 SHADOWLACE. جميع الحقوق محفوظة.</p>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
