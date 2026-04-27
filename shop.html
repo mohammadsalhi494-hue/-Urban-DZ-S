@@ -1,517 +1,72 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Triquetra Shop | المتجر الرسمي</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            min-height: 100vh;
-        }
-
-        /* فيديو الخلفية - تريكوات متحرك */
-        .video-background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -2;
-            overflow: hidden;
-        }
-
-        #triquetraVideo {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
-            object-fit: cover;
-        }
-
-        /* طبقة تعتيم عشان النص يقرا */
-        .dark-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.65);
-            z-index: -1;
-        }
-
-        /* هيدر المتجر */
-        .shop-header {
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(10px);
-            padding: 15px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            border-bottom: 1px solid rgba(255,215,0,0.3);
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: #ffd700;
-        }
-
-        .logo span {
-            color: white;
-            font-size: 1rem;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            margin-left: 25px;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: #ffd700;
-        }
-
-        .cart-icon {
-            font-size: 1.3rem;
-        }
-
-        /* محتوى المتجر الرئيسي */
-        .shop-main {
-            max-width: 1300px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-
-        .hero {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            color: white;
-            text-shadow: 0 0 15px rgba(0,0,0,0.5);
-        }
-
-        .hero p {
-            color: #ddd;
-            font-size: 1.2rem;
-            margin-top: 10px;
-        }
-
-        /* فلتر/بحث */
-        .filters {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 40px;
-            flex-wrap: wrap;
-        }
-
-        .filter-btn {
-            background: rgba(255,255,255,0.15);
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255,215,0,0.3);
-            color: white;
-            padding: 8px 20px;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .filter-btn:hover, .filter-btn.active {
-            background: #ffd700;
-            color: black;
-            border-color: #ffd700;
-        }
-
-        /* شبكة المنتجات */
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 30px;
-        }
-
-        .product-card {
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(12px);
-            border-radius: 20px;
-            padding: 20px;
-            transition: transform 0.3s, box-shadow 0.3s;
-            border: 1px solid rgba(255,255,255,0.15);
-            text-align: center;
-        }
-
-        .product-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 30px rgba(0,0,0,0.4);
-            background: rgba(255, 255, 255, 0.12);
-            border-color: rgba(255,215,0,0.4);
-        }
-
-        .product-icon {
-            font-size: 4rem;
-            margin-bottom: 15px;
-        }
-
-        .product-title {
-            font-size: 1.3rem;
-            font-weight: bold;
-            color: white;
-            margin: 10px 0;
-        }
-
-        .product-desc {
-            color: #ccc;
-            font-size: 0.85rem;
-            margin: 8px 0;
-        }
-
-        .product-price {
-            font-size: 1.5rem;
-            color: #ffd700;
-            margin: 12px 0;
-            font-weight: bold;
-        }
-
-        .add-to-cart {
-            background: linear-gradient(135deg, #4a6fa5, #2c3e66);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 30px;
-            cursor: pointer;
-            width: 100%;
-            font-size: 1rem;
-            transition: all 0.3s;
-        }
-
-        .add-to-cart:hover {
-            background: linear-gradient(135deg, #ffd700, #b8860b);
-            color: black;
-            transform: scale(1.02);
-        }
-
-        /* سلة جانبية */
-        .cart-sidebar {
-            position: fixed;
-            top: 0;
-            right: -400px;
-            width: 380px;
-            height: 100%;
-            background: rgba(0,0,0,0.95);
-            backdrop-filter: blur(15px);
-            z-index: 1000;
-            transition: right 0.4s ease;
-            padding: 20px;
-            border-left: 1px solid #ffd700;
-            overflow-y: auto;
-        }
-
-        .cart-sidebar.open {
-            right: 0;
-        }
-
-        .cart-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #ffd700;
-            padding-bottom: 15px;
-            margin-bottom: 20px;
-        }
-
-        .cart-header h2 {
-            color: #ffd700;
-        }
-
-        .close-cart {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.8rem;
-            cursor: pointer;
-        }
-
-        .cart-items {
-            max-height: 60vh;
-            overflow-y: auto;
-        }
-
-        .cart-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.2);
-            color: white;
-        }
-
-        .cart-total {
-            margin-top: 20px;
-            padding-top: 15px;
-            border-top: 2px solid #ffd700;
-            color: white;
-            font-size: 1.2rem;
-        }
-
-        .checkout-btn {
-            background: #ffd700;
-            color: black;
-            width: 100%;
-            padding: 12px;
-            border: none;
-            border-radius: 30px;
-            margin-top: 15px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        footer {
-            text-align: center;
-            padding: 30px;
-            color: white;
-            opacity: 0.6;
-        }
-
-        @media (max-width: 768px) {
-            .shop-header {
-                flex-direction: column;
-                gap: 10px;
-            }
-            .nav-links a {
-                margin: 0 12px;
-            }
-            .cart-sidebar {
-                width: 100%;
-                right: -100%;
-            }
-        }
-    </style>
+    <title>المتجر | SHADOWLACE</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Oswald:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <nav>
+        <div class="logo">SHADOWLACE</div>
+        <ul class="nav-links">
+            <li><a href="index.html">الرئيسية</a></li>
+            <li><a href="shop.html">المتجر</a></li>
+            <li><a href="index.html#about">عن الماركة</a></li>
+        </ul>
+        <div class="cart-icon">
+            <a href="checkout.html"><i class="fas fa-shopping-cart"></i> <span id="cart-count">0</span></a>
+        </div>
+    </nav>
 
-<!-- فيديو التريكوات المتحرك -->
-<div class="video-background">
-    <video autoplay loop muted playsinline id="triquetraVideo">
-        <source src="triquetra-bg.mp4" type="video/mp4">
-        متصفحك لا يدعم فيديو الخلفية
-    </video>
-</div>
-<div class="dark-overlay"></div>
-
-<!-- هيدر المتجر -->
-<div class="shop-header">
-    <div class="logo">⚡ TRIQUETRA <span>SHOP</span></div>
-    <div class="nav-links">
-        <a href="#">الرئيسية</a>
-        <a href="#">المنتجات</a>
-        <a href="#">العروض</a>
-        <a href="#">اتصل بنا</a>
-        <a href="#" class="cart-icon" id="openCartBtn">🛒 <span id="cartCount">0</span></a>
-    </div>
-</div>
-
-<!-- المحتوى الرئيسي -->
-<div class="shop-main">
-    <div class="hero">
-        <h1>✦ Triquetra Collection ✦</h1>
-        <p>رمز التوازن والحركة - منتجات روحانية فريدة</p>
-    </div>
-
-    <div class="filters">
-        <button class="filter-btn active" data-category="all">الكل</button>
-        <button class="filter-btn" data-category="jewelry">مجوهرات</button>
-        <button class="filter-btn" data-category="decor">ديكور</button>
-        <button class="filter-btn" data-category="clothing">ملابس</button>
-    </div>
-
-    <div class="products-grid" id="productsGrid"></div>
-    <footer>◎ Triquetra Shop - حيث يلتقي الروحي بالحركة ◎</footer>
-</div>
-
-<!-- السلة الجانبية -->
-<div class="cart-sidebar" id="cartSidebar">
-    <div class="cart-header">
-        <h2>سلة التسوق 🛒</h2>
-        <button class="close-cart" id="closeCartBtn">✕</button>
-    </div>
-    <div class="cart-items" id="cartItems"></div>
-    <div class="cart-total" id="cartTotal">المجموع: $0</div>
-    <button class="checkout-btn" id="checkoutBtn">إتمام الشراء</button>
-</div>
-
-<script>
-    // المنتجات
-    const products = [
-        { id: 1, name: "قلادة تريكوات فضة", category: "jewelry", price: 39.99, icon: "🌀", desc: "فضة نقية 925" },
-        { id: 2, name: "خاتم التريكوات", category: "jewelry", price: 49.99, icon: "💍", desc: "خاتم روحاني" },
-        { id: 3, name: "بوستر تريكوات مضيء", category: "decor", price: 19.99, icon: "🖼️", desc: "مقاس A2" },
-        { id: 4, name: "طقم ملصقات تريكوات", category: "decor", price: 12.99, icon: "📜", desc: "10 ملصقات" },
-        { id: 5, name: "تيشيرت تريكوات", category: "clothing", price: 29.99, icon: "👕", desc: "قطن 100%" },
-        { id: 6, name: "كاب تريكوات", category: "clothing", price: 24.99, icon: "🧢", desc: "قابل للتعديل" },
-        { id: 7, name: "شمعدان تريكوات", category: "decor", price: 34.99, icon: "🕯️", desc: "سيراميك" },
-        { id: 8, name: "سوار تريكوات", category: "jewelry", price: 27.99, icon: "📿", desc: "جلد طبيعي" }
-    ];
-
-    let cart = [];
-    let currentFilter = "all";
-
-    // عرض المنتجات
-    function renderProducts() {
-        const grid = document.getElementById("productsGrid");
-        let filtered = products;
-        if (currentFilter !== "all") {
-            filtered = products.filter(p => p.category === currentFilter);
-        }
+    <main class="shop-container">
+        <h1 class="section-title">تشكيلة الملابس</h1>
         
-        grid.innerHTML = filtered.map(product => `
+        <div class="products-grid">
+            <!-- Product 1 -->
             <div class="product-card">
-                <div class="product-icon">${product.icon}</div>
-                <div class="product-title">${product.name}</div>
-                <div class="product-desc">${product.desc}</div>
-                <div class="product-price">$${product.price}</div>
-                <button class="add-to-cart" data-id="${product.id}">➕ أضف إلى السلة</button>
+                <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Shadow Hoodie">
+                <h3>هودي Shadowlace الأصلي</h3>
+                <p class="price">4500 د.ج</p>
+                <button class="btn-add" onclick="addToCart('هودي Shadowlace الأصلي', 4500)">إضافة إلى السلة</button>
             </div>
-        `).join("");
 
-        // إضافة أحداث الأزرار
-        document.querySelectorAll(".add-to-cart").forEach(btn => {
-            btn.addEventListener("click", (e) => {
-                const id = parseInt(btn.dataset.id);
-                addToCart(id);
-            });
-        });
-    }
-
-    // إضافة للسلة
-    function addToCart(productId) {
-        const product = products.find(p => p.id === productId);
-        const existing = cart.find(item => item.id === productId);
-        if (existing) {
-            existing.quantity++;
-        } else {
-            cart.push({ ...product, quantity: 1 });
-        }
-        updateCartUI();
-        showNotification("✅ تمت الإضافة", product.name);
-    }
-
-    // تحديث واجهة السلة
-    function updateCartUI() {
-        const cartItemsDiv = document.getElementById("cartItems");
-        const cartCount = document.getElementById("cartCount");
-        const cartTotal = document.getElementById("cartTotal");
-        
-        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-        cartCount.textContent = totalItems;
-        
-        if (cart.length === 0) {
-            cartItemsDiv.innerHTML = "<p style='color:#888;text-align:center;'>السلة فارغة</p>";
-            cartTotal.innerHTML = "المجموع: $0";
-            return;
-        }
-        
-        cartItemsDiv.innerHTML = cart.map(item => `
-            <div class="cart-item">
-                <div>
-                    <strong>${item.name}</strong><br>
-                    <small>$${item.price} x ${item.quantity}</small>
-                </div>
-                <button onclick="removeFromCart(${item.id})" style="background:#c0392b;border:none;color:white;padding:5px 10px;border-radius:10px;cursor:pointer;">✕</button>
+            <!-- Product 2 -->
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Dark T-Shirt">
+                <h3>تيشيرت Dark Bold</h3>
+                <p class="price">2500 د.ج</p>
+                <button class="btn-add" onclick="addToCart('تيشيرت Dark Bold', 2500)">إضافة إلى السلة</button>
             </div>
-        `).join("");
-        
-        const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-        cartTotal.innerHTML = `المجموع: $${total.toFixed(2)}`;
-    }
 
-    // حذف من السلة
-    window.removeFromCart = function(id) {
-        const index = cart.findIndex(item => item.id === id);
-        if (index !== -1) {
-            if (cart[index].quantity > 1) {
-                cart[index].quantity--;
-            } else {
-                cart.splice(index, 1);
-            }
-            updateCartUI();
-            showNotification("❌ تمت الإزالة", "");
-        }
-    }
+            <!-- Product 3 -->
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Oversized Sweater">
+                <h3>سويتر Oversized</h3>
+                <p class="price">3800 د.ج</p>
+                <button class="btn-add" onclick="addToCart('سويتر Oversized', 3800)">إضافة إلى السلة</button>
+            </div>
 
-    // إشعار منبثق صغير
-    function showNotification(type, productName) {
-        const notif = document.createElement("div");
-        notif.textContent = type + (productName ? " " + productName : "");
-        notif.style.position = "fixed";
-        notif.style.bottom = "20px";
-        notif.style.right = "20px";
-        notif.style.background = "#ffd700";
-        notif.style.color = "black";
-        notif.style.padding = "12px 20px";
-        notif.style.borderRadius = "30px";
-        notif.style.zIndex = "1001";
-        notif.style.fontWeight = "bold";
-        document.body.appendChild(notif);
-        setTimeout(() => notif.remove(), 2000);
-    }
+            <!-- Product 4 -->
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Urban Jacket">
+                <h3>جاكيت Urban Mystery</h3>
+                <p class="price">7200 د.ج</p>
+                <button class="btn-add" onclick="addToCart('جاكيت Urban Mystery', 7200)">إضافة إلى السلة</button>
+            </div>
+        </div>
 
-    // الفلترة
-    document.querySelectorAll(".filter-btn").forEach(btn => {
-        btn.addEventListener("click", () => {
-            document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
-            btn.classList.add("active");
-            currentFilter = btn.dataset.category;
-            renderProducts();
-        });
-    });
+        <div style="text-align: center; margin-top: 50px;">
+            <a href="checkout.html" class="btn-primary">إتمام الطلب الآن</a>
+        </div>
+    </main>
 
-    // فتح/غلق السلة
-    const cartSidebar = document.getElementById("cartSidebar");
-    document.getElementById("openCartBtn").addEventListener("click", (e) => {
-        e.preventDefault();
-        cartSidebar.classList.add("open");
-    });
-    document.getElementById("closeCartBtn").addEventListener("click", () => {
-        cartSidebar.classList.remove("open");
-    });
-    document.getElementById("checkoutBtn").addEventListener("click", () => {
-        if(cart.length === 0) {
-            alert("السلة فارغة!");
-        } else {
-            alert("✨ شكراً لتسوقك! ✨\n(هذا متجر تجريبي)");
-            cart = [];
-            updateCartUI();
-            cartSidebar.classList.remove("open");
-        }
-    });
+    <footer>
+        <p>&copy; 2026 SHADOWLACE. جميع الحقوق محفوظة.</p>
+    </footer>
 
-    // تجهيز الفيديو
-    const video = document.getElementById("triquetraVideo");
-    if(video) {
-        video.addEventListener("error", () => {
-            console.log("تأكد من وجود ملف الفيديو في نفس المجلد");
-        });
-    }
-
-    // بدء التشغيل
-    renderProducts();
-    updateCartUI();
-</script>
-
+    <script src="script.js"></script>
 </body>
 </html>
