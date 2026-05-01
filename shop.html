@@ -1,72 +1,275 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>المتجر | SHADOWLACE</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Oswald:wght@400;700&display=swap" rel="stylesheet">
+    <title>متجر أنور | أحدث الصيحات</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: #f7f9fc;
+            color: #1f2a3a;
+        }
+        /* header عصرية */
+        .store-header {
+            background: linear-gradient(135deg, #1F1C2C, #2A2F3A);
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+        }
+        .cart-icon {
+            font-size: 1.6rem;
+            cursor: pointer;
+        }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 3rem auto;
+            padding: 0 1.5rem;
+        }
+        .product-card {
+            background: white;
+            border-radius: 32px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            text-align: center;
+            padding-bottom: 1.2rem;
+        }
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 40px rgba(0,0,0,0.2);
+        }
+        .product-img {
+            width: 100%;
+            height: 280px;
+            background-size: cover;
+            background-position: center;
+            background-color: #eef2f5;
+        }
+        .product-title {
+            font-size: 1.5rem;
+            margin: 1rem 0 0.3rem;
+        }
+        .price {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #e63946;
+        }
+        .btn-buy {
+            background: #2b9348;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            margin: 0.8rem;
+            border-radius: 40px;
+            color: white;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .btn-details {
+            background: #1e6091;
+            margin-left: 5px;
+        }
+        .btn-buy:hover { background: #1e6f3f; transform: scale(0.97);}
+
+        /* مودال التفاصيل ونموذج الشراء */
+        .modal {
+            display: none;
+            position: fixed;
+            top:0; left:0;
+            width:100%; height:100%;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .modal-content {
+            background: white;
+            width: 90%;
+            max-width: 500px;
+            border-radius: 48px;
+            padding: 2rem;
+            text-align: right;
+            direction: rtl;
+        }
+        .modal-content input, .modal-content textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 28px;
+            border: 1px solid #ccc;
+            font-family: 'Cairo';
+        }
+        .confirm-btn {
+            background: #25D366;
+            color: white;
+            padding: 12px;
+            width: 100%;
+            border: none;
+            border-radius: 40px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close-modal {
+            float: left;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        @media (max-width:700px) {
+            .products-grid { gap: 1rem; }
+        }
+    </style>
 </head>
 <body>
-    <nav>
-        <div class="logo">SHADOWLACE</div>
-        <ul class="nav-links">
-            <li><a href="index.html">الرئيسية</a></li>
-            <li><a href="shop.html">المتجر</a></li>
-            <li><a href="index.html#about">عن الماركة</a></li>
-        </ul>
-        <div class="cart-icon">
-            <a href="checkout.html"><i class="fas fa-shopping-cart"></i> <span id="cart-count">0</span></a>
-        </div>
-    </nav>
+<div class="store-header">
+    <div class="logo"><i class="fas fa-store"></i> Anouar Fashion | المتجر الرسمي</div>
+    <div><i class="fab fa-whatsapp"></i> 0559049058</div>
+</div>
 
-    <main class="shop-container">
-        <h1 class="section-title">تشكيلة الملابس</h1>
-        
-        <div class="products-grid">
-            <!-- Product 1 -->
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Shadow Hoodie">
-                <h3>هودي Shadowlace الأصلي</h3>
-                <p class="price">4500 د.ج</p>
-                <button class="btn-add" onclick="addToCart('هودي Shadowlace الأصلي', 4500)">إضافة إلى السلة</button>
-            </div>
+<div class="products-grid" id="productsContainer"></div>
 
-            <!-- Product 2 -->
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Dark T-Shirt">
-                <h3>تيشيرت Dark Bold</h3>
-                <p class="price">2500 د.ج</p>
-                <button class="btn-add" onclick="addToCart('تيشيرت Dark Bold', 2500)">إضافة إلى السلة</button>
-            </div>
+<!-- مودال لملئ معلومات العميل -->
+<div id="orderModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" id="closeModalBtn">&times;</span>
+        <h2><i class="fas fa-clipboard-list"></i> تأكيد الطلب</h2>
+        <p>المنتج: <strong id="modalProductName"></strong> - السعر: <span id="modalProductPrice"></span> دج</p>
+        <input type="text" id="customerName" placeholder="الاسم الكامل" required>
+        <input type="tel" id="customerPhone" placeholder="رقم الهاتف (مثال: 0559xxxxxx)" required>
+        <input type="text" id="customerAddress" placeholder="العنوان الكامل مع الولاية">
+        <textarea id="extraNotes" rows="2" placeholder="ملاحظات إضافية (لون, مقاس...)"></textarea>
+        <button class="confirm-btn" id="finalOrderBtn"><i class="fab fa-whatsapp"></i> تأكيد الطلب - إرسال للواتساب</button>
+    </div>
+</div>
 
-            <!-- Product 3 -->
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Oversized Sweater">
-                <h3>سويتر Oversized</h3>
-                <p class="price">3800 د.ج</p>
-                <button class="btn-add" onclick="addToCart('سويتر Oversized', 3800)">إضافة إلى السلة</button>
-            </div>
+<script>
+    // قائمة المنتجات (20 منتج لزيادة الطول والتنوع)
+    const products = [
+        { id:1, name:"قميص أنيق أوفر سايز", price:3200, img:"https://picsum.photos/id/20/300/300", desc:"خامة قطن فاخر مقاس حر" },
+        { id:2, name:"جاكيت جلد عصري", price:8900, img:"https://picsum.photos/id/0/300/300", desc:"جاكيت رجالي جودة عالية" },
+        { id:3, name:"فستان سهرة طويل", price:12500, img:"https://picsum.photos/id/30/300/300", desc:"تطريز يدوي أنيق" },
+        { id:4, name:"تي شيرت رياضي", price:1450, img:"https://picsum.photos/id/26/300/300", desc:"قطن مريح عدة ألوان" },
+        { id:5, name:"بنطلون كارجو", price:3990, img:"https://picsum.photos/id/28/300/300", desc:"جيب متعدد عملي" },
+        { id:6, name:"هودي ثقيل", price:4900, img:"https://picsum.photos/id/24/300/300", desc:"طباعة فنية" },
+        { id:7, name:"بدلة رسمية كاملة", price:22500, img:"https://picsum.photos/id/22/300/300", desc:"قماش إيطالي" },
+        { id:8, name:"تنورة كاجوال", price:2790, img:"https://picsum.photos/id/36/300/300", desc:"ناعمة وعصرية" },
+        { id:9, name:"كنزة صوف", price:5400, img:"https://picsum.photos/id/15/300/300", desc:"شتاء دافئ" },
+        { id:10, name:"كاب حريري", price:1800, img:"https://picsum.photos/id/42/300/300", desc:"أناقة راقية" },
+        { id:11, name:"بلوزة بأكمام جرس", price:3150, img:"https://picsum.photos/id/43/300/300", desc:"تصميم عصري" },
+        { id:12, name:"جينز ممزق", price:4750, img:"https://picsum.photos/id/44/300/300", desc:"موضة الشارع" },
+        { id:13, name:"معطف طويل", price:13400, img:"https://picsum.photos/id/45/300/300", desc:"كاشمير فاخر" },
+        { id:14, name:"بلايزر أزرق", price:8900, img:"https://picsum.photos/id/46/300/300", desc:"مناسب للمكاتب" },
+        { id:15, name:"ساعة جلد فاخر", price:5600, img:"https://picsum.photos/id/47/300/300", desc:"إكسسوار مميز" },
+        { id:16, name:"حذاء رياضي", price:7900, img:"https://picsum.photos/id/48/300/300", desc:"مريح للمشي" },
+        { id:17, name:"نظارة شمسية", price:2200, img:"https://picsum.photos/id/49/300/300", desc:"حماية UV" },
+        { id:18, name:"طقم بيجامة", price:4200, img:"https://picsum.photos/id/50/300/300", desc:"نوم فاخر" },
+        { id:19, name:"فانلة صيفي", price:1250, img:"https://picsum.photos/id/51/300/300", desc:"ألوان زاهية" },
+        { id:20, name:"شورت شاطئ", price:1850, img:"https://picsum.photos/id/52/300/300", desc:"خامة سريعة الجفاف" }
+    ];
 
-            <!-- Product 4 -->
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Urban Jacket">
-                <h3>جاكيت Urban Mystery</h3>
-                <p class="price">7200 د.ج</p>
-                <button class="btn-add" onclick="addToCart('جاكيت Urban Mystery', 7200)">إضافة إلى السلة</button>
-            </div>
-        </div>
+    let currentProductForOrder = null;
 
-        <div style="text-align: center; margin-top: 50px;">
-            <a href="checkout.html" class="btn-primary">إتمام الطلب الآن</a>
-        </div>
-    </main>
+    function renderProducts() {
+        const container = document.getElementById('productsContainer');
+        container.innerHTML = '';
+        products.forEach(prod => {
+            const card = document.createElement('div');
+            card.className = 'product-card';
+            card.innerHTML = `
+                <div class="product-img" style="background-image: url('${prod.img}');"></div>
+                <h3 class="product-title">${prod.name}</h3>
+                <p class="price">${prod.price.toLocaleString()} دج</p>
+                <p style="padding:0 10px; font-size:0.85rem;">${prod.desc}</p>
+                <div>
+                    <button class="btn-buy" data-id="${prod.id}"><i class="fas fa-shopping-cart"></i> شراء الآن</button>
+                    <button class="btn-buy btn-details details-btn" data-id="${prod.id}"><i class="fas fa-info-circle"></i> تفاصيل</button>
+                </div>
+            `;
+            container.appendChild(card);
+        });
+        // إضافة أحداث للأزرار
+        document.querySelectorAll('.btn-buy[data-id]').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const prodId = parseInt(btn.getAttribute('data-id'));
+                const product = products.find(p => p.id === prodId);
+                if(product) openOrderModal(product);
+                e.stopPropagation();
+            });
+        });
+        document.querySelectorAll('.details-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const prodId = parseInt(btn.getAttribute('data-id'));
+                const product = products.find(p => p.id === prodId);
+                alert(`📦 ${product.name}\n💰 السعر: ${product.price} دج\n📝 الوصف: ${product.desc}\n👕 متوفر بألوان ومقاسات متنوعة.`);
+            });
+        });
+    }
 
-    <footer>
-        <p>&copy; 2026 SHADOWLACE. جميع الحقوق محفوظة.</p>
-    </footer>
+    const modal = document.getElementById('orderModal');
+    const modalProductName = document.getElementById('modalProductName');
+    const modalProductPrice = document.getElementById('modalProductPrice');
 
-    <script src="script.js"></script>
+    function openOrderModal(product) {
+        currentProductForOrder = product;
+        modalProductName.innerText = product.name;
+        modalProductPrice.innerText = product.price.toLocaleString();
+        modal.style.display = 'flex';
+        // مسح الحقول القديمة
+        document.getElementById('customerName').value = '';
+        document.getElementById('customerPhone').value = '';
+        document.getElementById('customerAddress').value = '';
+        document.getElementById('extraNotes').value = '';
+    }
+
+    document.getElementById('closeModalBtn').onclick = () => { modal.style.display = 'none'; };
+    window.onclick = (e) => { if(e.target === modal) modal.style.display = 'none'; };
+
+    // دالة إرسال رسالة واتساب تلقائية (حل شامل لكل الناس)
+    document.getElementById('finalOrderBtn').addEventListener('click', () => {
+        const name = document.getElementById('customerName').value.trim();
+        const phone = document.getElementById('customerPhone').value.trim();
+        const address = document.getElementById('customerAddress').value.trim();
+        const notes = document.getElementById('extraNotes').value.trim();
+        if(!name || !phone) {
+            alert("الرجاء إدخال الاسم ورقم الهاتف");
+            return;
+        }
+        if(!currentProductForOrder) return;
+
+        const productDetails = `${currentProductForOrder.name} - السعر: ${currentProductForOrder.price} دج`;
+        const message = `🛍️ *طلب جديد من متجر Anouar Fashion*%0A👤 الاسم: ${name}%0A📞 الهاتف: ${phone}%0A📍 العنوان: ${address || "لم يحدد"}%0A📦 المنتج: ${productDetails}%0A📝 ملاحظات: ${notes || "لا توجد"}%0A✅ يرجى التأكيد والمتابعة عبر الواتساب.`;
+        const whatsappNumber = "0559049058"; // الرقم المطلوب
+        // إزالة المسافات والأحرف غير المرغوب فيها
+        const cleanNumber = whatsappNumber.replace(/\s/g, '');
+        const whatsappUrl = `https://wa.me/${cleanNumber}?text=${message}`;
+        window.open(whatsappUrl, '_blank');
+        // إرسال إشعار للمستخدم
+        alert(`✅ تم توجيهك إلى واتساب لإرسال الطلب إلى الرقم ${whatsappNumber}. سيتم الرد عليك فوراً. شكراً لتسوقك مع أنور فيشن!`);
+        modal.style.display = 'none';
+    });
+
+    renderProducts();
+</script>
 </body>
 </html>
